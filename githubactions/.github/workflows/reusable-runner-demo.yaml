@@ -1,0 +1,40 @@
+name: Reusable Self-Hosted Runner Demo
+
+on:
+  workflow_call:
+    inputs:
+      runner_label:
+        required: false
+        type: string
+        default: self-hosted
+
+jobs:
+  demo-job:
+    name: Demo Job on Self-Hosted Runner
+    runs-on: ${{ inputs.runner_label }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Show runner details
+        run: |
+          echo "Runner hostname: $(hostname)"
+          echo "User: $(whoami)"
+          echo "Working directory:"
+          pwd
+
+      - name: List files
+        run: ls -la
+
+      - name: Build simulation
+        run: |
+          echo "Starting build..."
+          sleep 5
+          echo "Build completed"
+
+      - name: Test simulation
+        run: |
+          echo "Running tests..."
+          sleep 3
+          echo "Tests passed"
