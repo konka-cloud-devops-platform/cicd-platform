@@ -7,14 +7,14 @@ def call(Map config) {
             stage('Hadolint') {
                 steps {
                     sh """
-                      docker run --rm \
-                        -v $(pwd):/work \
-                        -w /work \
-                        hadolint/hadolint Dockerfile
+                    docker run --rm \
+                    -v \$(pwd):/work \
+                    -w /work \
+                    hadolint/hadolint ${config.dockerfile}
                     """
                 }
             }
-        }
+        } 
     }
 }
 // def call(Map config) {
