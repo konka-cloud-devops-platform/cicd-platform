@@ -15,6 +15,16 @@ def call(Map config) {
                     """
                 }
             }
+            stage('Docker Build') {
+                steps {
+                    sh """
+                    docker build \
+                        -t ${config.imageName}:${config.imageTag ?: 'latest'} \
+                        -f ${config.dockerfile} \
+                        .
+                    """
+                }
+            }
         } 
     }
 }
