@@ -9,6 +9,7 @@ def call(Map config) {
                     sh """
                       docker run --rm \
                       -v \$(pwd):/work \
+                      -w /work \
                       hadolint/hadolint hadolint ${config.dockerfile}
                     """
                 }
