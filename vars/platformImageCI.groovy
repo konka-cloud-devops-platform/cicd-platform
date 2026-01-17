@@ -8,9 +8,9 @@ def call(Map config) {
                 steps {
                     sh """
                       docker run --rm \
-                      -v \$(pwd):/work \
-                      -w /work \
-                      hadolint/hadolint hadolint ${config.dockerfile}
+                        -v $(pwd):/work \
+                        -w /work \
+                        hadolint/hadolint Dockerfile
                     """
                 }
             }
