@@ -25,6 +25,15 @@ def call(Map config) {
                     """
                 }
             }
+            stage('Trivy Scan') {
+                steps {
+                    script {
+                        org.security.TrivyScan.scan(
+                            "${IMAGE_NAME}:${IMAGE_TAG}"
+                        )
+                    }
+                }
+            }
         } 
     }
 }
