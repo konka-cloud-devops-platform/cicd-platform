@@ -8,6 +8,7 @@ def call(Map config) {
                 steps {
                     sh """
                     docker run --rm \
+                    --entrypoint hadolint \
                     -v \$(pwd):/work \
                     -w /work \
                     hadolint/hadolint ${config.dockerfile}
