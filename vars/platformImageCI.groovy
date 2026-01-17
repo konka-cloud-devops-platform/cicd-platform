@@ -25,6 +25,14 @@ def call(Map config) {
                     """
                 }
             }
+            stage('Prepare Trivy Config') {
+                steps {
+                    script {
+                        def trivyConfig = libraryResource 'trivy.yaml'
+                        writeFile file: 'trivy.yaml', text: trivyConfig
+                    }
+                }
+            }
             stage('Trivy Scan') {
                 steps {
                     script {
