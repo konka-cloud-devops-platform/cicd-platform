@@ -29,7 +29,7 @@ def call(Map config) {
                 steps {
                     script {
                         org.security.TrivyScan.scan(
-                            "${IMAGE_NAME}:${IMAGE_TAG}"
+                            "${config.imageName}:${config.imageTag}"
                         )
                     }
                 }
