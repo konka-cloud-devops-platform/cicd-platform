@@ -58,6 +58,17 @@ def call(Map config) {
                     archiveArtifacts artifacts: 'sbom.json', fingerprint: true
                 }
             }
+            stage('Docker Push') {
+                steps {
+                    sh """
+                      aws ecr get-login-password --region ${config.awsRegion} \
+                      | docker login --username AWS --password-stdin ${config.ecrRepo}
+
+                      docker tag ${config.imageName}:${config.imageTag} ${config.ecrRepo}:${config.imageTag}
+                      docker push ${config.ecrRepo}:${config.imageTag}
+                    """
+                }
+            }
         } 
     }
 }
