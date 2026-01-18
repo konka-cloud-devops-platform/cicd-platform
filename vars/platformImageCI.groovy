@@ -43,6 +43,21 @@ def call(Map config) {
                     }
                 }
             }
+            stage('Generate SBOM') {
+                steps {
+                    script {
+                        org.security.SBOM.generate(
+                            steps,
+                            "${config.imageName}:${config.imageTag}"
+                        )
+                    }
+                }
+            }
+            // stage('Archive SBOM') {
+            //     steps {
+            //         archiveArtifacts artifacts: 'sbom.json', fingerprint: true
+            //     }
+            // }
         } 
     }
 }
