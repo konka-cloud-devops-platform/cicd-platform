@@ -53,11 +53,11 @@ def call(Map config) {
                     }
                 }
             }
-            // stage('Archive SBOM') {
-            //     steps {
-            //         archiveArtifacts artifacts: 'sbom.json', fingerprint: true
-            //     }
-            // }
+            stage('Archive SBOM') {
+                steps {
+                    archiveArtifacts artifacts: 'sbom.json', fingerprint: true
+                }
+            }
         } 
     }
 }
