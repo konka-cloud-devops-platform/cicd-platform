@@ -1,7 +1,7 @@
 def call(Map config) {
     pipeline {
         agent {
-            label config.agentLabel ?: 'any'
+            label config.agentLabel ?: 'built-in'
         }
         stages {
             stage('Hadolint') {
